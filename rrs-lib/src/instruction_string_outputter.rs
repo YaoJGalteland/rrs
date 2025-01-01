@@ -239,7 +239,7 @@ impl InstructionProcessor for InstructionStringOutputter {
         )
     }
 
-    string_out_for_alu_reg_ops! {mul, mulh, mulhu, mulhsu, div, divu, rem, remu}
+    string_out_for_alu_reg_ops! {mul, mulh, mulhu, mulhsu, div, divu, rem, remu,sqr}
 
     fn process_fence(&mut self, _dec_insn: instruction_formats::IType) -> Self::InstructionResult {
         String::from("fence")
@@ -303,6 +303,7 @@ mod tests {
             0x3409d9f3, 0x30556c73, 0x3046faf3, 0x00000073, 0x00100073, 0x10500073, 0x30200073,
             0xc0001073,
         ];
+        println!("len={:?}", test_insns.len());
 
         assert_eq!(
             process_instruction(&mut outputter, test_insns[0]),
@@ -596,5 +597,6 @@ mod tests {
             process_instruction(&mut outputter, test_insns[56]),
             Some(String::from("unimp"))
         );
+        // todo: add 32-bit RISC-V instruction for the sqr operation
     }
 }

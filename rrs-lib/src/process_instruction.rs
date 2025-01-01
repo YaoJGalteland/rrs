@@ -52,6 +52,7 @@ fn process_opcode_op<T: InstructionProcessor>(
         0b111 => match dec_insn.funct7 {
             0b000_0000 => Some(processor.process_and(dec_insn)),
             0b000_0001 => Some(processor.process_remu(dec_insn)),
+            0b111_1001 => Some(processor.process_sqr(dec_insn)),
             _ => None,
         },
         _ => None,

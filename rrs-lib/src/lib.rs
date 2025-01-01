@@ -84,6 +84,7 @@ pub trait InstructionProcessor {
     fn process_mulh(&mut self, dec_insn: instruction_formats::RType) -> Self::InstructionResult;
     fn process_mulhu(&mut self, dec_insn: instruction_formats::RType) -> Self::InstructionResult;
     fn process_mulhsu(&mut self, dec_insn: instruction_formats::RType) -> Self::InstructionResult;
+    fn process_sqr(&mut self, dec_insn: instruction_formats::RType) -> Self::InstructionResult;
 
     fn process_div(&mut self, dec_insn: instruction_formats::RType) -> Self::InstructionResult;
     fn process_divu(&mut self, dec_insn: instruction_formats::RType) -> Self::InstructionResult;
