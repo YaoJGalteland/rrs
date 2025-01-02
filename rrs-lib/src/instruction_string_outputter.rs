@@ -303,7 +303,6 @@ mod tests {
             0x3409d9f3, 0x30556c73, 0x3046faf3, 0x00000073, 0x00100073, 0x10500073, 0x30200073,
             0xc0001073,
         ];
-        println!("len={:?}", test_insns.len());
 
         assert_eq!(
             process_instruction(&mut outputter, test_insns[0]),
