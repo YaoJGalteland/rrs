@@ -14,7 +14,7 @@ fn process_opcode_op<T: InstructionProcessor>(
     match dec_insn.funct3 {
         0b000 => match dec_insn.funct7 {
             0b000_0000 => Some(processor.process_add(dec_insn)),
-            0b000_0001 => Some(processor.process_mul(dec_insn)),
+            0b000_0001 => Some(processor.process_sqr(dec_insn)),
             0b010_0000 => Some(processor.process_sub(dec_insn)),
             _ => None,
         },
@@ -52,7 +52,7 @@ fn process_opcode_op<T: InstructionProcessor>(
         0b111 => match dec_insn.funct7 {
             0b000_0000 => Some(processor.process_and(dec_insn)),
             0b000_0001 => Some(processor.process_remu(dec_insn)),
-            0b111_1001 => Some(processor.process_sqr(dec_insn)),
+            0b111_1001 => Some(processor.process_mul(dec_insn)),
             _ => None,
         },
         _ => None,
