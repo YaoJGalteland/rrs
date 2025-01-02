@@ -47,7 +47,7 @@
 //! );
 //! ```
 
-use super::csrs::{CSRAddr, ExceptionCause, MIx, PrivLevel};
+use super::csrs::{ExceptionCause, MIx, PrivLevel};
 use super::instruction_formats;
 use super::process_instruction;
 use super::CSR;
@@ -548,11 +548,11 @@ impl<'a, M: Memory> InstructionProcessor for InstructionExecutor<'a, M> {
         Ok(true)
     }
 
-    make_alu_op_reg_fn! {mul, |a, b| a.wrapping_mul(a)}
+    make_alu_op_reg_fn! {mul, |a, b| a.wrapping_mul(b)}
     make_alu_op_reg_fn! {mulh, |a, b| (sign_extend_u32(a).wrapping_mul(sign_extend_u32(b)) >> 32) as u32}
     make_alu_op_reg_fn! {mulhu, |a, b| (((a as u64).wrapping_mul(b as u64)) >> 32) as u32}
     make_alu_op_reg_fn! {mulhsu, |a, b| (sign_extend_u32(a).wrapping_mul(b as i64) >> 32) as u32}
-    make_alu_op_reg_fn! {sqr, |a, b| a.wrapping_mul(a)}
+    make_alu_op_reg_fn! {sqr, |a, _b| a.wrapping_mul(a)}
 
     make_alu_op_reg_fn! {div, |a, b| if b == 0 {u32::MAX} else {((a as i32).wrapping_div(b as i32)) as u32}}
     make_alu_op_reg_fn! {divu, |a, b| if b == 0 {u32::MAX} else {a / b}}
